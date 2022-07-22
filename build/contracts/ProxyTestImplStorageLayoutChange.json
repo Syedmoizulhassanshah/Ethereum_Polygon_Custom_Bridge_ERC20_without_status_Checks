@@ -1,0 +1,350 @@
+{
+  "contractName": "ProxyTestImplStorageLayoutChange",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "a",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "b",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"a\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"b\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/moiz/pos-portal/contracts/test/ProxyTestImplStorageLayoutChange.sol\":\"ProxyTestImplStorageLayoutChange\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/moiz/pos-portal/contracts/common/Initializable.sol\":{\"keccak256\":\"0xa21250206c1423c08d7cf64f3f7213570b1d64ee262e9444e02aca7194182505\",\"urls\":[\"bzz-raw://b626f7bb2039da8aedbf5d7a21c9a996bef3c1267e7ae9a77644e2077542b277\",\"dweb:/ipfs/QmYinSusskaGXYfKeW18mYE8PeFkB69dVdsKqr2BLMjgru\"]},\"/home/moiz/pos-portal/contracts/test/ProxyTestImplStorageLayoutChange.sol\":{\"keccak256\":\"0x1c38e10e0869703ad6bba50faf8136b970f5041ad8ed672f78a066a6a060f874\",\"urls\":[\"bzz-raw://f0d978d60f05b6e0974f5b7f48ceeeee43091e23afe3fa87b0674c5ecbbce80b\",\"dweb:/ipfs/QmQnbSDEzC18o7e2yujkM8NX4FA6MiJAWUJkZTCTwJ1WVi\"]}},\"version\":1}",
+  "bytecode": "0x60806040526000805460ff19169055348015601957600080fd5b506097806100286000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80630dbe671f1460375780634df7e3d014604f575b600080fd5b603d6055565b60408051918252519081900360200190f35b603d605b565b60025481565b6001548156fea2646970667358221220c54e620d4f945e0ae96c1f3f36911a6ed00bb280abb9c96c9313db697d95c76364736f6c63430006060033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80630dbe671f1460375780634df7e3d014604f575b600080fd5b603d6055565b60408051918252519081900360200190f35b603d605b565b60025481565b6001548156fea2646970667358221220c54e620d4f945e0ae96c1f3f36911a6ed00bb280abb9c96c9313db697d95c76364736f6c63430006060033",
+  "immutableReferences": {},
+  "sourceMap": "84:106:47:-:0;;;67:5:16;53:19;;-1:-1:-1;;53:19:16;;;84:106:47;2:2:-1;;;;27:1;24;17:12;2:2;84:106:47;;;;;;;",
+  "deployedSourceMap": "84:106:47:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;84:106:47;;;;;;;;;;;;;;;;;;;;;12:1:-1;9;2:12;171:16:47;;;:::i;:::-;;;;;;;;;;;;;;;;149;;;:::i;171:::-;;;;:::o;149:::-;;;;:::o",
+  "source": "pragma solidity 0.6.6;\n\nimport {Initializable} from \"../common/Initializable.sol\";\n\ncontract ProxyTestImplStorageLayoutChange is Initializable {\n    uint256 public b;\n    uint256 public a;\n}\n",
+  "sourcePath": "/home/moiz/pos-portal/contracts/test/ProxyTestImplStorageLayoutChange.sol",
+  "ast": {
+    "absolutePath": "/home/moiz/pos-portal/contracts/test/ProxyTestImplStorageLayoutChange.sol",
+    "exportedSymbols": {
+      "ProxyTestImplStorageLayoutChange": [
+        5915
+      ]
+    },
+    "id": 5916,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5906,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:22:47"
+      },
+      {
+        "absolutePath": "/home/moiz/pos-portal/contracts/common/Initializable.sol",
+        "file": "../common/Initializable.sol",
+        "id": 5908,
+        "nodeType": "ImportDirective",
+        "scope": 5916,
+        "sourceUnit": 1785,
+        "src": "24:58:47",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 5907,
+              "name": "Initializable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "32:13:47",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5909,
+              "name": "Initializable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1784,
+              "src": "129:13:47",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Initializable_$1784",
+                "typeString": "contract Initializable"
+              }
+            },
+            "id": 5910,
+            "nodeType": "InheritanceSpecifier",
+            "src": "129:13:47"
+          }
+        ],
+        "contractDependencies": [
+          1784
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5915,
+        "linearizedBaseContracts": [
+          5915,
+          1784
+        ],
+        "name": "ProxyTestImplStorageLayoutChange",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "4df7e3d0",
+            "id": 5912,
+            "mutability": "mutable",
+            "name": "b",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 5915,
+            "src": "149:16:47",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 5911,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "149:7:47",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "0dbe671f",
+            "id": 5914,
+            "mutability": "mutable",
+            "name": "a",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 5915,
+            "src": "171:16:47",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 5913,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "171:7:47",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5916,
+        "src": "84:106:47"
+      }
+    ],
+    "src": "0:191:47"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/moiz/pos-portal/contracts/test/ProxyTestImplStorageLayoutChange.sol",
+    "exportedSymbols": {
+      "ProxyTestImplStorageLayoutChange": [
+        5915
+      ]
+    },
+    "id": 5916,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5906,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:22:47"
+      },
+      {
+        "absolutePath": "/home/moiz/pos-portal/contracts/common/Initializable.sol",
+        "file": "../common/Initializable.sol",
+        "id": 5908,
+        "nodeType": "ImportDirective",
+        "scope": 5916,
+        "sourceUnit": 1785,
+        "src": "24:58:47",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 5907,
+              "name": "Initializable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "32:13:47",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5909,
+              "name": "Initializable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1784,
+              "src": "129:13:47",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Initializable_$1784",
+                "typeString": "contract Initializable"
+              }
+            },
+            "id": 5910,
+            "nodeType": "InheritanceSpecifier",
+            "src": "129:13:47"
+          }
+        ],
+        "contractDependencies": [
+          1784
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5915,
+        "linearizedBaseContracts": [
+          5915,
+          1784
+        ],
+        "name": "ProxyTestImplStorageLayoutChange",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "4df7e3d0",
+            "id": 5912,
+            "mutability": "mutable",
+            "name": "b",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 5915,
+            "src": "149:16:47",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 5911,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "149:7:47",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "0dbe671f",
+            "id": 5914,
+            "mutability": "mutable",
+            "name": "a",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 5915,
+            "src": "171:16:47",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 5913,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "171:7:47",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5916,
+        "src": "84:106:47"
+      }
+    ],
+    "src": "0:191:47"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.1",
+  "updatedAt": "2022-07-22T04:49:36.030Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

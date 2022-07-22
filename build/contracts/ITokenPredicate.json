@@ -1,0 +1,794 @@
+{
+  "contractName": "ITokenPredicate",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "depositor",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "depositReceiver",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "rootToken",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "depositData",
+          "type": "bytes"
+        }
+      ],
+      "name": "lockTokens",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_withdrawer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_rootTokenAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "exitTokens",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_withdrawer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_rootTokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_tokenAmount\",\"type\":\"uint256\"}],\"name\":\"exitTokens\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"depositor\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"depositReceiver\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rootToken\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"depositData\",\"type\":\"bytes\"}],\"name\":\"lockTokens\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"exitTokens(address,address,uint256)\":{\"details\":\"This function releases the ERC20 Tokens that where locked in by ERC20Predicate contract when RootchainManagers depositFor() was called.\",\"params\":{\"_rootTokenAddress\":\": Root Token address  on Ethereum Chain.\",\"_tokenAmount\":\": ERC20 Tokens Amount which needs to be unlocked and refunded on the root chain\",\"_withdrawer\":\": Root chain Address whose ERC20Tokens were deposited and locked.\"}},\"lockTokens(address,address,address,bytes)\":{\"details\":\"When `depositor` deposits tokens into pos portal, tokens get locked into predicate contract.\",\"params\":{\"depositData\":\"Extra data for deposit (amount for ERC20, token id for ERC721 etc.) [ABI encoded]\",\"depositReceiver\":\"Address (address) who wants to receive tokens on side chain\",\"depositor\":\"Address who wants to deposit tokens\",\"rootToken\":\"Token which gets deposited\"}}},\"title\":\"Token predicate interface for all pos portal predicates\"},\"userdoc\":{\"methods\":{\"exitTokens(address,address,uint256)\":{\"notice\":\"processes exit while withdraw process\"},\"lockTokens(address,address,address,bytes)\":{\"notice\":\"Deposit tokens into pos portal\"}},\"notice\":\"Abstract interface that defines methods for custom predicates\"}},\"settings\":{\"compilationTarget\":{\"/home/moiz/pos-portal/contracts/root/TokenPredicates/ITokenPredicate.sol\":\"ITokenPredicate\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/moiz/pos-portal/contracts/lib/RLPReader.sol\":{\"keccak256\":\"0x01fc619322e46138c9a2f0adf392b27a3b9ae2ed3da75e3b8dd2ae12d8d9bdfa\",\"urls\":[\"bzz-raw://15ce28c5d3590e8f2577fce122baf854fd8fe1ea6b9b890e1452d7b92c9ae337\",\"dweb:/ipfs/QmbWLiomK49HrWRB4rgJTi2fdSvvoq1DrRPK2gn8jDyEaW\"]},\"/home/moiz/pos-portal/contracts/root/TokenPredicates/ITokenPredicate.sol\":{\"keccak256\":\"0x70f165ff27e83e7f3de5d9eeda6fb493d36779a90bebd79e28f5ca59e0ff9d7f\",\"urls\":[\"bzz-raw://846b87ab4c5560c68d0f82cb4336ceed310cf054de2532423088066f2920b0a9\",\"dweb:/ipfs/QmR16HRpUDnXTVvQYBErfmWJvU78e9DsMeZMni1hhsTPpd\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.6.6;\n\nimport {RLPReader} from \"../../lib/RLPReader.sol\";\n\n/// @title Token predicate interface for all pos portal predicates\n/// @notice Abstract interface that defines methods for custom predicates\ninterface ITokenPredicate {\n    /**\n     * @notice Deposit tokens into pos portal\n     * @dev When `depositor` deposits tokens into pos portal, tokens get locked into predicate contract.\n     * @param depositor Address who wants to deposit tokens\n     * @param depositReceiver Address (address) who wants to receive tokens on side chain\n     * @param rootToken Token which gets deposited\n     * @param depositData Extra data for deposit (amount for ERC20, token id for ERC721 etc.) [ABI encoded]\n     */\n    function lockTokens(\n        address depositor,\n        address depositReceiver,\n        address rootToken,\n        bytes calldata depositData\n    ) external;\n\n    /**\n     * @notice processes exit while withdraw process\n     * @dev This function releases the ERC20 Tokens that where locked in by ERC20Predicate contract when RootchainManagers depositFor() was called.\n     *\n     * @param _withdrawer: Root chain Address whose ERC20Tokens were deposited and locked.\n     * @param _rootTokenAddress: Root Token address  on Ethereum Chain.\n     * @param _tokenAmount: ERC20 Tokens Amount which needs to be unlocked and refunded on the root chain\n     */\n    function exitTokens(\n        address _withdrawer,\n        address _rootTokenAddress,\n        uint256 _tokenAmount\n    ) external;\n}\n",
+  "sourcePath": "/home/moiz/pos-portal/contracts/root/TokenPredicates/ITokenPredicate.sol",
+  "ast": {
+    "absolutePath": "/home/moiz/pos-portal/contracts/root/TokenPredicates/ITokenPredicate.sol",
+    "exportedSymbols": {
+      "ITokenPredicate": [
+        5558
+      ]
+    },
+    "id": 5559,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5532,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:22:39"
+      },
+      {
+        "absolutePath": "/home/moiz/pos-portal/contracts/lib/RLPReader.sol",
+        "file": "../../lib/RLPReader.sol",
+        "id": 5534,
+        "nodeType": "ImportDirective",
+        "scope": 5559,
+        "sourceUnit": 4161,
+        "src": "24:50:39",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 5533,
+              "name": "RLPReader",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "32:9:39",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 5535,
+          "nodeType": "StructuredDocumentation",
+          "src": "76:141:39",
+          "text": "@title Token predicate interface for all pos portal predicates\n @notice Abstract interface that defines methods for custom predicates"
+        },
+        "fullyImplemented": false,
+        "id": 5558,
+        "linearizedBaseContracts": [
+          5558
+        ],
+        "name": "ITokenPredicate",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 5536,
+              "nodeType": "StructuredDocumentation",
+              "src": "249:471:39",
+              "text": "@notice Deposit tokens into pos portal\n@dev When `depositor` deposits tokens into pos portal, tokens get locked into predicate contract.\n@param depositor Address who wants to deposit tokens\n@param depositReceiver Address (address) who wants to receive tokens on side chain\n@param rootToken Token which gets deposited\n@param depositData Extra data for deposit (amount for ERC20, token id for ERC721 etc.) [ABI encoded]"
+            },
+            "functionSelector": "e375b64e",
+            "id": 5547,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lockTokens",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 5545,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5538,
+                  "mutability": "mutable",
+                  "name": "depositor",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "754:17:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5537,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "754:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5540,
+                  "mutability": "mutable",
+                  "name": "depositReceiver",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "781:23:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5539,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "781:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5542,
+                  "mutability": "mutable",
+                  "name": "rootToken",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "814:17:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5541,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "814:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5544,
+                  "mutability": "mutable",
+                  "name": "depositData",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "841:26:39",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5543,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "841:5:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "744:129:39"
+            },
+            "returnParameters": {
+              "id": 5546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "882:0:39"
+            },
+            "scope": 5558,
+            "src": "725:158:39",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 5548,
+              "nodeType": "StructuredDocumentation",
+              "src": "889:488:39",
+              "text": "@notice processes exit while withdraw process\n@dev This function releases the ERC20 Tokens that where locked in by ERC20Predicate contract when RootchainManagers depositFor() was called.\n     * @param _withdrawer: Root chain Address whose ERC20Tokens were deposited and locked.\n@param _rootTokenAddress: Root Token address  on Ethereum Chain.\n@param _tokenAmount: ERC20 Tokens Amount which needs to be unlocked and refunded on the root chain"
+            },
+            "functionSelector": "988ec987",
+            "id": 5557,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "exitTokens",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 5555,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5550,
+                  "mutability": "mutable",
+                  "name": "_withdrawer",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5557,
+                  "src": "1411:19:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5549,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1411:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5552,
+                  "mutability": "mutable",
+                  "name": "_rootTokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5557,
+                  "src": "1440:25:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5551,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1440:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5554,
+                  "mutability": "mutable",
+                  "name": "_tokenAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5557,
+                  "src": "1475:20:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5553,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1475:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1401:100:39"
+            },
+            "returnParameters": {
+              "id": 5556,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1510:0:39"
+            },
+            "scope": 5558,
+            "src": "1382:129:39",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5559,
+        "src": "217:1296:39"
+      }
+    ],
+    "src": "0:1514:39"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/moiz/pos-portal/contracts/root/TokenPredicates/ITokenPredicate.sol",
+    "exportedSymbols": {
+      "ITokenPredicate": [
+        5558
+      ]
+    },
+    "id": 5559,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5532,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:22:39"
+      },
+      {
+        "absolutePath": "/home/moiz/pos-portal/contracts/lib/RLPReader.sol",
+        "file": "../../lib/RLPReader.sol",
+        "id": 5534,
+        "nodeType": "ImportDirective",
+        "scope": 5559,
+        "sourceUnit": 4161,
+        "src": "24:50:39",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 5533,
+              "name": "RLPReader",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "32:9:39",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 5535,
+          "nodeType": "StructuredDocumentation",
+          "src": "76:141:39",
+          "text": "@title Token predicate interface for all pos portal predicates\n @notice Abstract interface that defines methods for custom predicates"
+        },
+        "fullyImplemented": false,
+        "id": 5558,
+        "linearizedBaseContracts": [
+          5558
+        ],
+        "name": "ITokenPredicate",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 5536,
+              "nodeType": "StructuredDocumentation",
+              "src": "249:471:39",
+              "text": "@notice Deposit tokens into pos portal\n@dev When `depositor` deposits tokens into pos portal, tokens get locked into predicate contract.\n@param depositor Address who wants to deposit tokens\n@param depositReceiver Address (address) who wants to receive tokens on side chain\n@param rootToken Token which gets deposited\n@param depositData Extra data for deposit (amount for ERC20, token id for ERC721 etc.) [ABI encoded]"
+            },
+            "functionSelector": "e375b64e",
+            "id": 5547,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lockTokens",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 5545,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5538,
+                  "mutability": "mutable",
+                  "name": "depositor",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "754:17:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5537,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "754:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5540,
+                  "mutability": "mutable",
+                  "name": "depositReceiver",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "781:23:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5539,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "781:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5542,
+                  "mutability": "mutable",
+                  "name": "rootToken",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "814:17:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5541,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "814:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5544,
+                  "mutability": "mutable",
+                  "name": "depositData",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5547,
+                  "src": "841:26:39",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5543,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "841:5:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "744:129:39"
+            },
+            "returnParameters": {
+              "id": 5546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "882:0:39"
+            },
+            "scope": 5558,
+            "src": "725:158:39",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 5548,
+              "nodeType": "StructuredDocumentation",
+              "src": "889:488:39",
+              "text": "@notice processes exit while withdraw process\n@dev This function releases the ERC20 Tokens that where locked in by ERC20Predicate contract when RootchainManagers depositFor() was called.\n     * @param _withdrawer: Root chain Address whose ERC20Tokens were deposited and locked.\n@param _rootTokenAddress: Root Token address  on Ethereum Chain.\n@param _tokenAmount: ERC20 Tokens Amount which needs to be unlocked and refunded on the root chain"
+            },
+            "functionSelector": "988ec987",
+            "id": 5557,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "exitTokens",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 5555,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5550,
+                  "mutability": "mutable",
+                  "name": "_withdrawer",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5557,
+                  "src": "1411:19:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5549,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1411:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5552,
+                  "mutability": "mutable",
+                  "name": "_rootTokenAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5557,
+                  "src": "1440:25:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5551,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1440:7:39",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5554,
+                  "mutability": "mutable",
+                  "name": "_tokenAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5557,
+                  "src": "1475:20:39",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5553,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1475:7:39",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1401:100:39"
+            },
+            "returnParameters": {
+              "id": 5556,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1510:0:39"
+            },
+            "scope": 5558,
+            "src": "1382:129:39",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5559,
+        "src": "217:1296:39"
+      }
+    ],
+    "src": "0:1514:39"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.6+commit.6c089d02.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.1",
+  "updatedAt": "2022-07-22T04:49:36.020Z",
+  "devdoc": {
+    "methods": {
+      "exitTokens(address,address,uint256)": {
+        "details": "This function releases the ERC20 Tokens that where locked in by ERC20Predicate contract when RootchainManagers depositFor() was called.",
+        "params": {
+          "_rootTokenAddress": ": Root Token address  on Ethereum Chain.",
+          "_tokenAmount": ": ERC20 Tokens Amount which needs to be unlocked and refunded on the root chain",
+          "_withdrawer": ": Root chain Address whose ERC20Tokens were deposited and locked."
+        }
+      },
+      "lockTokens(address,address,address,bytes)": {
+        "details": "When `depositor` deposits tokens into pos portal, tokens get locked into predicate contract.",
+        "params": {
+          "depositData": "Extra data for deposit (amount for ERC20, token id for ERC721 etc.) [ABI encoded]",
+          "depositReceiver": "Address (address) who wants to receive tokens on side chain",
+          "depositor": "Address who wants to deposit tokens",
+          "rootToken": "Token which gets deposited"
+        }
+      }
+    },
+    "title": "Token predicate interface for all pos portal predicates"
+  },
+  "userdoc": {
+    "methods": {
+      "exitTokens(address,address,uint256)": {
+        "notice": "processes exit while withdraw process"
+      },
+      "lockTokens(address,address,address,bytes)": {
+        "notice": "Deposit tokens into pos portal"
+      }
+    },
+    "notice": "Abstract interface that defines methods for custom predicates"
+  }
+}

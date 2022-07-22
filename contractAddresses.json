@@ -1,0 +1,18 @@
+{
+  "root": {
+    "RootChainManager": "0x07Dd009cD2938F274D8890f7FaBa60c394AA4D38",
+    "RootChainManagerProxy": "0xf21C90e68e0b5FAb17170C686Dea482f136cc711",
+    "DummyStateSender": "0xcbB976d20d08411d0EEAE85C3886B1863d8beD04",
+    "ERC20Predicate": "0xbBd7ec6a233D1Df6A9C6F40c175fe14fAA9C2d4a",
+    "ERC20PredicateProxy": "0x32502326008d7b3bD3a2606Db9078Fb829eCAcF5",
+    "DummyERC20": "0x017660fFf7e0b4ECC5bA8641Fe55c983b159501e",
+    "DummyMintableERC20": "0xBafBe4DD0E75ef1534076585F077C537EB762fFA"
+  },
+  "child": {
+    "ChildChainManager": "0xeea10D72C5cB69e033806eaC882Fab8f02708bBD",
+    "ChildChainManagerProxy": "0x884a9fc8126ddD45d68F801911FDfe059A6C876A",
+    "DummyERC20": "0xE1ef9837098b7cfcF73bE6d2Ce4DDd78bc4cC5Fb",
+    "DummyMintableERC20": "0xfb74d8A4FCeEc380b7939Be19DF3BA4c52a3c6ff",
+    "MaticWETH": "0x71E3316483b39830152D894B67eAE291F25Bd386"
+  }
+}
